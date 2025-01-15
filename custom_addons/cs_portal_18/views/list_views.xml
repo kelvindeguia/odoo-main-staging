@@ -1,0 +1,338 @@
+<odoo>
+    <!--    ### CLIENTS START ###-->
+    <record id="cs_portal_clients_list" model="ir.ui.view">
+        <field name="name">cs.portal.clients.list</field>
+        <field name="model">cs.portal.main</field>
+        <field name="arch" type="xml">
+            <list multi_edit="1">
+                <field name="account_name" />
+                <field name="account_owner_id" />
+                <field name="account_status" />
+                <field name="secondary_owner_id" />
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+            </list>
+        </field>
+    </record>
+
+    <!--    ### TAGS START ###-->
+    <record id="cs_portal_tags_list" model="ir.ui.view">
+        <field name="name">cs.portal.tags.list</field>
+        <field name="model">cs.portal.tag</field>
+        <field name="arch" type="xml">
+            <list string="Tags" editable="bottom" sample="1">
+                <field name="id" />
+                <field name="name" />
+                <field name="color" widget="color_picker" />
+            </list>
+        </field>
+    </record>
+    <!--    ### TAGS END ###-->
+
+    <!--    ### CONTRACT LENGTH START ###-->
+    <record id="cs_portal_contract_length_list" model="ir.ui.view">
+        <field name="name">cs.portal.contract.length.list</field>
+        <field name="model">cs.portal.contract.length</field>
+        <field name="arch" type="xml">
+            <list string="Contract Length" editable="bottom" sample="1">
+                <field name="id" />
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+    <!--    ### CONTRACT LENGTH END ###-->
+
+    <!--    ### ACCOUNT OWNER START ###-->
+    <record id="cs_portal_account_owner_list" model="ir.ui.view">
+        <field name="name">cs.portal.account.owner.list</field>
+        <field name="model">cs.portal.account.owner</field>
+        <field name="arch" type="xml">
+            <list string="Account Owner" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+                <field name="account_owner_ids" />
+                <field name="user_id" />
+                <field name="active_account_owner" />
+                <field name="email_address" />
+            </list>
+        </field>
+    </record>
+    <!--    ### ACCOUNT OWNER END ###-->
+
+    <!--    ### SECONDARY OWNER START ###-->
+    <record id="cs_portal_secondary_owner_list" model="ir.ui.view">
+        <field name="name">cs.portal.secondary.owner.list</field>
+        <field name="model">cs.portal.secondary.owner</field>
+        <field name="arch" type="xml">
+            <list string="Secondary Owner" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+                <field name="account_owner_ids" />
+                <field name="user_id" />
+                <field name="active_secondary_owner" />
+                <field name="email_address" />
+            </list>
+        </field>
+    </record>
+    <!--    ### SECONDARY OWNER END ###-->
+
+    <!--    ### POC INFORMATION START ###-->
+    <record id="cs_portal_poc_information_list" model="ir.ui.view">
+        <field name="name">cs.portal.poc.information.list</field>
+        <field name="model">cs.portal.poc.information</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="hierarchy" />
+                <!-- <field name="health" widget="health_status_widget"/> -->
+                <!-- <field name="health" /> -->
+                <field name="kanban_state" widget="state_selection"/>
+                <field name="name" />
+                <field name="department" />
+                <field name="designation" />
+                <field name="email" />
+                <field name="phone" />
+                <field name="chat_platform_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="influence_type" />
+            </list>
+        </field>
+    </record>
+    <!--    ### POC INFORMATION END ###--> 
+
+    <!-- CLIENT INTERACTIONS START: LIST VIEW -->
+    <record id="cs_portal_client_interactions_list" model="ir.ui.view">
+        <field name="name">cs.portal.client.interactions.list</field>
+        <field name="model">cs.portal.client.interactions</field>
+        <field name="arch" type="xml">
+            <list string="Client Interactions">
+                <field name="date" />
+                <field name="type_of_interactions_id" />
+                <field name="notes" />
+                <field name="request" />
+                <!-- <field name="client_id" /> -->
+                <field name="requested_by" />
+                <!-- <field name="account_owner_id" /> -->
+                <!-- <field name="interactions_owner_id" /> -->
+                <field name="interactions_owner_ids" />
+            </list>
+        </field>
+    </record>
+
+    <!--  CLIENT INTERACTIONS TYPE OF INTERACTIONS START -->
+    <record id="cs_portal_client_interactions_type_list" model="ir.ui.view">
+        <field name="name">cs.portal.client.interactions.type.list</field>
+        <field name="model">cs.portal.client.interactions.type</field>
+        <field name="arch" type="xml">
+            <list string="Type of Interactions" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+    <!-- CLIENT INTERACTIONS TYPE OF INTERACTIONS END -->
+
+    <!--  CLIENT INTERACTIONS OWNER START -->
+    <!-- <record id="cs_portal_client_interactions_owner_list" model="ir.ui.view">
+        <field name="name">cs.portal.client.interactions.owner.list</field>
+        <field name="model">cs.portal.client.interactions.owner</field>
+        <field name="arch" type="xml">
+            <list string="Client Interactions Owner" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+            </list>
+        </field>
+    </record> -->
+    <!-- CLIENT INTERACTIONS OWNER END -->
+
+    <!--   INTERACTIONS OWNER START -->
+    <record id="cs_portal_interactions_owner_list" model="ir.ui.view">
+        <field name="name">cs.portal.interactions.owner.list</field>
+        <field name="model">cs.portal.interactions.owner</field>
+        <field name="arch" type="xml">
+            <list string="Interactions Owner" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+                <field name="color" widget="color_picker" />
+            </list>
+        </field>
+    </record>
+    <!--  INTERACTIONS OWNER END -->
+
+    <!-- CLIENT BUSINESS REVIEWS START: LIST VIEW -->
+    <record id="cs_portal_business_reviews_list" model="ir.ui.view">
+        <field name="name">cs.portal.business.reviews.list</field>
+        <field name="model">cs.portal.business.reviews</field>
+        <field name="arch" type="xml">
+            <list string="Business Reviews">
+                <field name="type_of_business_reviews_id" />
+                <!-- <field name="participants" /> -->
+                <field name="cs_participants" />
+                <field name="isupport_participant" />
+                <field name="client_participant" />
+                <field name="pending_items" />
+                <field name="status" />
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+
+    <!--    ### CLIENT MEETING TYPE OF BUSINESS REVIEW START: LIST VIEW ###-->
+    <record id="cs_portal_client_meeting_type_list" model="ir.ui.view">
+        <field name="name">cs.portal.client.meeting.type.list</field>
+        <field name="model">cs.portal.client.meeting.type</field>
+        <field name="arch" type="xml">
+            <list string="Meeting Type" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+    <!--    ### CLIENT MEETING TYPE OF BUSINESS REVIEW END ###-->
+
+    <!--    ### ATTRITION ###-->
+    <record id="cs_portal_attrition_list" model="ir.ui.view">
+        <field name="name">cs.portal.attrition.list</field>
+        <field name="model">cs.portal.attrition</field>
+        <field name="arch" type="xml">
+            <list string="Attrition and Backfills">
+                <field name="employee_id" />
+                <field name="full_name" />
+                <field name="position" />
+                <field name="employment_status" />
+                <field name="date_hired" />
+                <field name="separation_date" />
+                <field name="separation_status_id" />
+                <field name="category" />
+                <field name="voluntary_involuntary" />
+                <field name="hr_remarks" />
+                <field name="date_uploaded" />
+                <field name="initial_approach_date" />
+                <field name="client_agreed_to_backfill" />
+                <field name="initial_remarks" />
+                <field name="Progress_remarks" />
+                <field name="backfill_req_date" />
+            </list>
+        </field>
+    </record>
+
+    <!--    ### REQUISITION START ###-->
+    <record id="cs_portal_requisition_list" model="ir.ui.view">
+        <field name="name">cs.portal.requisition.list</field>
+        <field name="model">cs.portal.requisition</field>
+        <field name="arch" type="xml">
+            <list string="Requisition">
+                <!-- <field name="x_job_description" /> -->
+                <!-- <field name="jd_attachment_ids" /> -->
+                <field name="calibration_date" />
+                <field name="start_date" />
+                <field name="position_classification" />
+                <field name="client_classification" />
+                <field name="job_title_name" />
+                <field name="hiring_manager" />
+                <field name="client_validation" />
+                <!-- <field name="client_validation_attachment_ids" /> -->
+            </list>
+        </field>
+    </record>
+    
+    <!--    Requisitions Page List View-->
+    <record id="hr_requisition_view_list" model="ir.ui.view">
+        <field name="name">Requisitions List</field>
+        <field name="model">hr.requisition</field>
+        <field name="arch" type="xml">
+            <list string="Requisitions">
+                <field name="x_req_id" />
+                <!-- <field name="x_department_id" /> -->
+                <field name="job_description_ids" />
+                <field name="x_job_name" />
+                <field name="x_no_of_demand" />
+                <field name="x_salary_package" />
+                <field name="x_hiring_manager" />
+                <field name="x_hiring_manager_email" />
+                <field name="x_calibration_call_availability" />
+                <field name="x_recruitment_requestor" />
+                <field name="x_requisition_status" />
+            </list>
+        </field>
+    </record>
+
+    <!--    ### REVENUE GENERATION START ###-->
+    <record id="cs_portal_revenue_generation_list" model="ir.ui.view">
+        <field name="name">cs.portal.revenue.generation.list</field>
+        <field name="model">cs.portal.revenue.generation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="type_of_revenue_generation_id" />
+                <field name="employee_name" />
+                <field name="course_title" />
+                <field name="it_assets" />
+                <field name="miscellaneous" />
+                <field name="purpose" />
+                <field name="destination" />
+                <field name="price_per_course" />
+                <field name="invoiced_month" />
+                <field name="employee_list" />
+                <field name="quantity" />
+                <field name="requested_date" />
+                <field name="order_date" />
+                <field name="completed_date" />
+                <field name="approval_date" />
+                <field name="amount_usd" />
+                <field name="amount_php" />
+                <field name="order_status" />
+                <field name="approval_status" />
+            </list>
+        </field>
+    </record>
+
+    <record id="cs_portal_client_revenue_generation_type_list" model="ir.ui.view">
+        <field name="name">cs.portal.revenue.generation.type.list</field>
+        <field name="model">cs.portal.revenue.generation.type</field>
+        <field name="arch" type="xml">
+            <list string="Type of Revenue Generation" editable="bottom">
+                <field name="id" />
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <!--    ### REVENUE GENERATION DETAILS START ###-->
+    <!-- <record id="cs_portal_revenue_generation_details_list" model="ir.ui.view">
+        <field name="name">cs.portal.revenue.generation.details.list</field>
+        <field name="model">cs.portal.revenue.generation.details</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="revenue_generation_id" />
+                <field name="type_id" />
+            </list>
+        </field>
+    </record> -->
+
+    <!--    ### Chat platform START ###-->
+    <record id="cs_portal_chat_platform" model="ir.ui.view">
+        <field name="name">cs.portal.chat.platform.list</field>
+        <field name="model">cs.portal.chat.platform</field>
+        <field name="arch" type="xml">
+            <list string="Chat Platform" editable="bottom" sample="1">
+                <field name="id" />
+                <field name="name" />
+                <field name="color" widget="color_picker" />
+            </list>
+        </field>
+    </record>
+    <!--    ### Chat platform END ###-->
+
+    <!-- Logs Tree View -->
+    <record model="ir.ui.view" id="hr_logs_view_list">
+        <field name="name">Logs List</field>
+        <field name="model">hr.logs</field>
+        <field name="arch" type="xml">
+            <list string="Logs">
+                <field name="user_id" />
+                <field name="updated_field" />
+                <field name="ov_final" />
+                <field name="nv_final" />
+                <field name="create_date" string="Updated On" />
+            </list>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="admin_access">
+            <field name="name">Admin</field>
+            <field name="parent_id" ref="module_cs_portal_category" />
+        </record>
+
+        <record id="group_cs_portal_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="admin_access"/>
+        </record>
+
+        <record id="group_cs_portal_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="admin_access"/>
+            <field name="implied_ids" eval="[(4, ref('group_cs_portal_user'))]"/>
+        </record>
+
+        <!-- HR ACCESS -->
+        <record model="ir.module.category" id="hr_access">
+            <field name="name">HR</field>
+            <field name="parent_id" ref="module_cs_portal_category" />
+        </record>
+
+        <record id="group_cs_portal_attrition_user" model="res.groups">
+            <field name="name">HR User</field>
+            <field name="category_id" ref="hr_access" />
+        </record>
+
+        <record id="group_cs_portal_attrition_manager" model="res.groups">
+            <field name="name">HR Manager</field>
+            <field name="category_id" ref="hr_access" />
+            <field name="implied_ids" eval="[(4, ref('group_cs_portal_attrition_user'))]" />
+        </record>
+
+
+
+
+
+        <record id="group_cs_portal_additional_access" model="res.groups">
+            <field name="name">No Access to Change Account Owner fields</field>
+            <field name="category_id" ref="module_cs_portal_category"/>
+        </record>
+
+        <record id="group_cs_portal_recruitment_access" model="res.groups">
+            <field name="name">Recruitment: View Only Access</field>
+            <field name="category_id" ref="module_cs_portal_category"/>
+        </record>
+
+        <record id="group_cs_portal_sales_access" model="res.groups">
+            <field name="name">Sales: View Only Access</field>
+            <field name="category_id" ref="module_cs_portal_category"/>
+        </record>
+
+        <record id="group_cs_portal_hr_access" model="res.groups">
+            <field name="name">HR: View Only Attrition Section </field>
+            <field name="category_id" ref="module_cs_portal_category"/>
+        </record>
+    </data>
+</odoo>

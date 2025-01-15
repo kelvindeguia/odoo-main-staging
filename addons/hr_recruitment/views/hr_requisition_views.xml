@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_hr_recruitment_requisition">
+        <field name="name">Requisitions</field>
+        <field name="res_model">hr.recruitment.requisition</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No requisitions yet
+            </p><p>
+                Odoo helps you track applicants in the recruitment
+                process and follow up all operations: meetings, interviews, etc.
+            </p><p>
+                Applicants and their attached résumé are created automatically when an email is sent.
+                If you install the document management modules, all resumes are indexed automatically,
+                so that you can easily search through their content.
+            </p>
+        </field>
+    </record>
+ 
+    <record id="view_hr_recruitment_requisition_form" model="ir.ui.view">
+        <field name="name">hr.recruitment.requisition.form</field>
+        <field name="model">hr.recruitment.requisition</field>
+        <field name="arch" type="xml">
+            <form string="Requisition">
+                <header/> 
+                <field name="active" invisible="1"/>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <widget name="web_ribbon" title="Priority" invisible="priority != 'yes'"/>
+                    <div class="oe_title">
+                        <label for="department_id"/>
+                        <h1><field name="department_id" options="{'no_create': True, 'no_create_edit':True}" style="width:100%"/></h1>
+                    </div>
+                    <group>
+                        <group string="Requisition Information">
+                            <field name="job_id" readonly="not department_id" domain="[('department_id', '=', department_id)]" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="job_description_ids" widget="many2many_binary"/>
+                            <field name="calibration_notes_ids" widget="many2many_binary"/>
+                            <field name="company"/>
+                            <field name="career_level"/>
+                            <field name="audio_clip_needed" widget="boolean_toggle"/>
+                            <field name="assessment_needed" widget="boolean_toggle"/>
+                            <field name="calibration_needed" widget="boolean_toggle"/>
+                            <field name="priority"/>
+                            <field name="calibration_call_availability"/>
+                            <field name="calibration_date"/>
+                            <field name="start_date"/>
+                            <field name="client_classification"/>
+                            <field name="job_classification"/>
+                            <field name="support_team" readonly="client_classification != 'support_hiring'" required="client_classification == 'support_hiring'"/>
+                            <field name="position_classification"/>
+                            <field name="industry" groups="hr_recruitment.group_hr_recruitment_user,base.group_system"/>
+                            <field name="salary_package"/>
+                            <field name="client_website" widget="url"/>
+                        </group>
+                        <group string="Requisition SLA and Status">
+                            <field name="req_id"/>
+                            <field name="requisition_status"/>
+                            <field name="date_cancelled" readonly="1"/>
+                            <field name="date_onhold" readonly="1"/>
+                            <field name="date_filled" readonly="1"/>
+                            <field name="date_completed" readonly="1"/>
+                            <field name="date_reopen" readonly="1"/>
+                            <field name="date_opened" groups="base.group_system"/>
+                            <field name="cancelled_reason" readonly="requisition_status != 'cancelled'"/>
+                            <field name="onhold_cancelled_remarks" readonly="not (requisition_status == 'cancelled' or requisition_status == 'on_hold' or requisition_status == 'completed')"/>
+                            <field name="create_date"/>
+                            <field name="sourcing_date"/>
+                            <field name="req_ageing" style="font-weight: bold;font-size: 15pt"
+                                    decoration-success="req_ageing &gt; 0"
+                                    decoration-danger="req_ageing &gt; 60"
+                                    decoration-warning="req_ageing &gt; 30" />
+                            <field name="sla_met" invisible="requisition_status not in ['filled', 'completed'] " style="font-weight: bold;font-size: 15pt" decoration-success="sla_met == 'yes'" decoration-danger="sla_met == 'no'"/>
+                            <field name="days_to_fill" invisible="requisition_status not in ['filled', 'completed']"/>
+                            <field name="days_passed" groups="base.group_system"/>
+                            <field name="req_ageing_total" groups="base.group_system"/>
+                            <field name="days_onhold" groups="base.group_system"/>
+                            <field name="hold_start_date" groups="base.group_system"/>
+                            <field name="hold_end_date" groups="base.group_system"/>
+                            <field name="old_onhold_checker" groups="base.group_system"/>
+                            <field name="onhold_counter" groups="base.group_system"/>
+                            <field name="end_date" groups="base.group_system"/>
+                            <field name="datetime_today" groups="base.group_system"/>
+                            <field name="create_uid"/>
+                            <field name="requisition_url" widget="url"/>
+                        </group>
+                        <group string="Staffing Overview">
+                            <field name="headcount_demand"/>
+                            <field name="remaining_vacancy" groups="hr_recruitment.group_hr_recruitment_user,base.group_system"/>
+                            <field name="filled" groups="hr_recruitment.group_hr_recruitment_user,base.group_system"/>
+                            <field name="projected_headcount"/>
+                            <field name="projected_neo_date"/>
+                        </group>
+                        <group string="Recruitment and Client POC">
+                            <field name="requestor_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="hiring_manager"/>
+                            <field name="hiring_manager_email" widget="email"/>
+                            <field name="sec_hiring_manager"/>
+                            <field name="recruitment_manager_id" options="{'no_create': True, 'no_create_edit':True}" groups="hr_recruitment.group_hr_recruitment_user,base.group_system"/>
+                            <field name="assigned_recruiter_id" options="{'no_create': True, 'no_create_edit':True}" groups="hr_recruitment.group_hr_recruitment_user,base.group_system"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Requisition Remarks">
+                            <field name="requisition_remarks" placeholder="Requisition Remarks"/>
+                        </page>
+                        <page string="Other">
+                            <field name="other_remarks" placeholder="Other Remarks"/>
+                        </page>
+                        <page string="Applicants">
+                            <button name="compute_hired_applicants" string="Hires" type="object" class="btn-primary me-5 mb-5"/>
+                            <button name="compute_all_applicants" string="All Applicants" type="object" class="btn-primary mb-5"/>
+                            <field name="applicant_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+
+    <record id="view_hr_recruitment_requisition_tree" model="ir.ui.view">
+        <field name="name">hr.recruitment.requisition.list</field>
+        <field name="model">hr.recruitment.requisition</field>
+        <field name="arch" type="xml">
+            <list string="Requisition" sample="1">
+                <field name="sequence" widget="handle"/>
+                <field name="req_id"/>
+                <field name="position_classification"/>
+                <field name="job_classification"/>
+                <field name="client_classification"/>
+                <field name="industry"/>
+                <field name="requestor_id"/>
+                <field name="assigned_recruiter_id"/>
+                <field name="company"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="priority"/>
+                <field name="start_date"/>
+                <field name="date_cancelled"/>
+                <field name="date_onhold"/>
+                <field name="sourcing_date"/>
+                <field name="headcount_demand"/>
+                <field name="remaining_vacancy"/>
+                <field name="filled"/>
+                <field name="date_reopen"/>
+                <field name="salary_package"/>
+                <field name="assessment_needed"/>
+                <field name="projected_headcount"/>
+                <field name="requisition_remarks"/>
+            </list>
+        </field>
+    </record>
+</odoo>

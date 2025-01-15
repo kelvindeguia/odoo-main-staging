@@ -1,0 +1,671 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!--    ### CLIENTS START: FORM VIEW ###-->
+    <record id="cs_portal_clients_form" model="ir.ui.view">
+        <field name="name">cs.portal.clients.form</field>
+        <field name="model">cs.portal.main</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                    <div class="oe_title">
+                    </div>
+                    <div>
+                        <label for="account_name"/>
+                        <h1>
+                            <field name="account_name" width="100%" placeholder="Required" required="1"/>
+                            <field name="kanban_state" widget="state_selection" />
+                        </h1>
+                    
+                    </div>
+                    <hr style="height:5px;border=width:0;color:gray;background-color:gray" invisible="not edit_attachments"/>
+                    <group string="Company Profile" id="cs_portal_main_company_profile" invisible="not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_revenue_generation or not edit_attachments">
+                        <group>
+                            <!-- <button name="compute_edit_information" string="Edit" type="object" class="oe_highlight" invisible="not edit"/>
+                            <button name="compute_save_information" string="Save" type="object" class="oe_highlight" invisible="edit" style="margin-bottom: 50px;"/> -->
+                            <field name="ceo" />
+                            <field name="website" widget="url" placeholder="samplewebsite.com"/>
+                            <field name="year_founded" placeholder="Enter value here"/>
+                            <field name="contract_length_id" />
+                            <field name="contract_start_date" placeholder="Select Date here" />
+                            <field name="contact_phone_number" placeholder="XXX-XXX-XXXX" widget="phone" />
+                            <field name="telephone_number" placeholder="Enter value here" widget="phone" />
+                            <field name="contact_email" placeholder="sample@gmail.com" />
+                            <field name="company_headcount" />
+                        </group>
+                        <group>
+                            <field name="industry" />
+                            <field name="country_id" placeholder="Select from options" />
+                            <field name="state_id" placeholder="Select from options" />
+                            <field name="city" placeholder="Enter value here" />
+                            <field name="street" placeholder="Enter value here" />
+                            <field name="street_number" />
+                            <field name="zip_code" />
+                            <!-- <field name="address" readonly="edit"/> -->
+                            
+                        </group>
+                        <group string="Additional Details ">
+                            <field name="account_owner_id" domain="[('active_account_owner', '=', True)]" placeholder="Enter value here"  />
+                            <field name="secondary_owner_id" domain="[('active_secondary_owner', '=', True)]" placeholder="Enter value here" />
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Enter value here" />
+                            <field name="record_id" groups="base.group_system"/>
+                        </group>
+                        <!-- <group string="Company Address">
+                            <field name="street_number" readonly="edit"/>
+                            <field name="street_name" readonly="edit"/>
+                            <field name="city" readonly="edit"/>
+                            <field name="state" readonly="edit"/>
+                        </group> -->
+                    </group>
+                    <group string="Point of Contact" id="cs_portal_main_poc_information" invisible="not edit or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_revenue_generation or not edit_attachments">
+                        <!-- <button name="compute_edit_poc" string="Edit" type="object" class="oe_highlight" invisible="not edit_poc "/>
+                        <button name="compute_save_poc" string="Save" type="object" class="oe_highlight" invisible="edit_poc "/> -->
+                             <field name="poc_information_ids" readonly="edit_poc"/> 
+                        <!--<field name="poc_information_ids"/>-->
+                    </group>
+                    <group string="Client Interactions" id="cs_portal_main_client_interactions" invisible="not edit or not edit_poc or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_revenue_generation or not edit_attachments">
+                            <!-- <field name="client_interactions_ids" readonly="edit"/> -->
+                            <!-- <button name="compute_edit_client_interactions" string="Edit" type="object" class="oe_highlight" invisible="not edit_client_interactions"/>
+                            <button name="compute_save_client_interactions" string="Save" type="object" class="oe_highlight" invisible="edit_client_interactions"/> -->
+                            <field name="client_interactions_ids" readonly="edit_client_interactions"/>
+                    </group>
+                    <group string="Business Reviews" id="cs_portal_main_business_reviews" invisible="not edit or not edit_poc or not edit_client_interactions or not edit_attrition or not edit_requisition or not edit_revenue_generation or not edit_attachments">
+                            <!-- <button name="compute_edit_business_reviews" string="Edit" type="object" class="oe_highlight" invisible="not edit_business_reviews"/>
+                            <button name="compute_save_business_reviews" string="Save" type="object" class="oe_highlight" invisible="edit_business_reviews"/> -->
+                            <!-- <field name="business_reviews_ids" readonly="edit"/> -->
+                            <field name="business_reviews_ids" readonly="edit_business_reviews"/>
+                    </group>
+                    <group string="Attrition" id="cs_portal_main_attrition" invisible="not edit or not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_requisition or not edit_revenue_generation or not edit_attachments">
+                            <!-- <button name="compute_edit_attrition" string="Edit" type="object" class="oe_highlight" invisible="not edit_attrition"/>
+                            <button name="compute_save_attrition" string="Save" type="object" class="oe_highlight" invisible="edit_attrition"/> -->
+                            <!-- <field name="attrition_ids" readonly="edit"/> -->
+                            <field name="attrition_ids" readonly="edit_attrition"/>
+                    </group>
+                    <group string="Requisitions" id="cs_portal_main_hr_requisitions" invisible="not edit or not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_revenue_generation or not edit_attachments">
+                            <!-- <field name="hr_requisitions_ids" readonly="edit"/> -->
+                            <!-- <button name="compute_edit_requisition" string="Edit" type="object" class="oe_highlight" invisible="not edit_requisition"/>
+                            <button name="compute_save_requisition" string="Save" type="object" class="oe_highlight" invisible="edit_requisition"/> -->
+                            <field name="hr_requisitions_ids" readonly="edit_requisition"/>
+                    </group>
+                    <group string="Revenue Generation" id="cs_portal_main_revenue_generation" invisible="not edit or not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_attachments">
+                            <!-- <field name="revenue_generation_ids" readonly="edit"/> -->
+                            <!-- <button name="compute_edit_revenue_generation" string="Edit" type="object" class="oe_highlight" invisible="not edit_revenue_generation"/>
+                            <button name="compute_save_revenue_generation" string="Save" type="object" class="oe_highlight" invisible="edit_revenue_generation"/> -->
+                            <!-- <field name="type_of_revenue_generation_ids" readonly="edit_revenue_generation" widget="many2many_checkboxes"/> -->
+                            <field name="type_of_revenue_generation_id" />
+                            <field name="revenue_generation_ids" />
+                            <field name="revenue_generation_idss" />
+                    </group>
+                    
+                    <hr style="height:5px;border=width:0;color:gray;background-color:gray" invisible="not edit_attachments"/>
+                    <h3 invisible="not edit or not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_revenue_generation">Attachments</h3>
+                    <div invisible="not edit or not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_revenue_generation">
+                        <!-- <button name="compute_edit_attachments" string="Edit" type="object" class="oe_highlight" invisible="not edit_attachments"/>
+                        <button name="compute_save_attachments" string="Save" type="object" class="oe_highlight" invisible="edit_attachments"/> -->
+                    </div>
+                    <notebook invisible="not edit or not edit_poc or not edit_client_interactions or not edit_business_reviews or not edit_attrition or not edit_requisition or not edit_revenue_generation">
+                        <page name="Job Descriptions" id="cs_portal_jd_attachments">
+                            <field name="jd_attachment_ids" widget="many2many_binary" readonly="edit_attachments"/>
+                        </page>
+                        <page name="Minutes of the Meeting" id="cs_portal_mom_attachments">
+                            <field name="mom_attachment_ids" widget="many2many_binary" readonly="edit_attachments"/>
+                        </page>
+                        <page name="Calibration Notes" id="cs_portal_cn_attachments">
+                            <field name="cn_attachment_ids" widget="many2many_binary" readonly="edit_attachments"/>
+                        </page>
+                        <page name="Client Validation" id="cs_portal_cv_attachments">
+                            <field name="cv_attachment_ids" widget="many2many_binary" readonly="edit_attachments"/>
+                        </page>
+                    </notebook>
+                </form>
+        </field>
+    </record>
+
+    <!--    ### POC INFORMATION START: FORM VIEW ###-->
+    <record id="cs_portal_poc_information_form" model="ir.ui.view">
+        <field name="name">cs.portal.poc.information.form</field>
+        <field name="model">cs.portal.poc.information</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="hierarchy" placeholder="Select from options" required="1"/>
+                            <!-- <field name="health" widget="health_status_widget"/> -->
+                            <!-- <field name="health" placeholder="Select from options"/> -->
+                            <field name="kanban_state" placeholder="Select from options" required="1"/>
+                            <field name="name" required="1"/>
+                            <field name="department" required="1"/>
+                            <field name="designation" required="1"/>
+                            <field name="email" placeholder="sample@gmail.com"/>
+                            <field name="phone" placeholder="XXX-XXX-XXXX" widget="phone" required="1"/>
+                            <field name="chat_platform_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Select from options"/>
+                            <field name="influence_type" placeholder="Select from options"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    ### POC INFORMATION FORM END ###-->
+
+    <!--    ### CLIENT INTERACTIONS START: FORM VIEW ###-->
+    <record id="cs_portal_client_interactions_form" model="ir.ui.view">
+        <field name="name">cs.portal.client.interactions.form</field>
+        <field name="model">cs.portal.client.interactions</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="date" placeholder="Select Date here" required="1"/>
+                    <field name="type_of_interactions_id" placeholder="Please select a value" required="1"/>
+                    <field name="notes" placeholder="Enter notes here"/>
+                    <field name="request" placeholder="Enter value here" required="1"/>
+                    <!-- <field name="client_id" /> -->
+                    <field name="requested_by" placeholder="Enter value here" required="1"/>
+                    <!-- <field name="account_owner_id" placeholder="Enter value here" required="1"/> -->
+                    <!-- <field name="interactions_owner_id" placeholder="Enter value here" required="1"/> -->
+                    <field name="interactions_owner_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Enter value here" required="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <!--    ### CLIENT INTERACTIONS END ###-->
+
+    <!--    ### CLIENT BUSINESS REVIEWS START: FORM VIEW ###-->
+    <record id="cs_portal_business_reviews_form" model="ir.ui.view">
+        <field name="name">cs.portal.business.reviews.form</field>
+        <field name="model">cs.portal.business.reviews</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="type_of_business_reviews_id" placeholder="Please select a value" required="1"/>
+                            <!-- <field name="participants" /> -->
+                            <field name="cs_participants" placeholder="Please select a value" required="1"/>
+                            <field name="isupport_participant" invisible="cs_participants != 'isupport_participants'"/>
+                            <field name="client_participant" invisible="cs_participants != 'client_participants'"/>
+                            <field name="pending_items" />
+                            <field name="status" placeholder="Please select a value" required="1"/>
+                            <field name="notes" placeholder="Enter value here" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    ### CLIENT BUSINESS REVIEWS END ###-->
+
+    <!-- CLIENT ATTRITION START: FORM VIEW -->
+    <record id="cs_portal_attrition_form" model="ir.ui.view">
+        <field name="name">cs.portal.attrition.form</field>
+        <field name="model">cs.portal.attrition</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" placeholder="Enter value here" required="1"/>
+                            <field name="full_name" placeholder="Enter value here" required="1"/>
+                            <field name="position" placeholder="Enter value here" required="1"/>
+                            <field name="employment_status" placeholder="Enter value here" required="1"/>
+                            <field name="date_hired" placeholder="Select Date here" required="1"/>
+                            <field name="separation_date" placeholder="Select Date here" required="1"/>
+                            <field name="separation_status_id" placeholder="Enter value here" required="1"/>
+                            <field name="category" placeholder="Please select a value" required="1"/>
+                            <field name="voluntary_involuntary" placeholder="Please select a value" required="1"/>
+                            <field name="hr_remarks" placeholder="Enter notes here" />
+                            <field name="date_uploaded" placeholder="Select Date here" required="1"/>
+                            <field name="initial_approach_date" placeholder="Select Date here" required="1"/>
+                            <field name="client_agreed_to_backfill" placeholder="Please select a value" required="1"/>
+                            <field name="initial_remarks" placeholder="Enter notes here"/>
+                            <field name="Progress_remarks" placeholder="Enter notes here"/>
+                            <field name="backfill_req_date" placeholder="Select Date here" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- ATTRITION END -->
+
+    <!-- CLIENT REQUISITION START: FORM VIEW -->
+    <record id="cs_portal_requisition_form" model="ir.ui.view">
+        <field name="name">cs.portal.requisition.form</field>
+        <field name="model">cs.portal.requisition</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="x_job_description" />
+                            <!-- <field name="jd_attachment_ids" /> -->
+                            <field name="calibration_date" />
+                            <field name="start_date" />
+                            <field name="position_classification" />
+                            <field name="client_classification" />
+                            <field name="job_title_name" />
+                            <field name="hiring_manager" />
+                            <field name="client_validation" />
+                            <!-- <field name="client_validation_attachment_ids" /> -->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- REQUISITION END -->
+
+    <!-- RECRUITMENT REQUISITION START FORM -->
+    <record
+            id="hr_requisition_view_form" model="ir.ui.view">
+            <field name="name">Requisition Form</field>
+            <field name="model">hr.requisition</field>
+            <field name="arch" type="xml">
+                <form string="Requisition Form" class="o_applicant_form">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <div class="oe_title">
+                        </div>
+                        <div class="oe_title">
+                            <div>
+                                <label for="x_department_id" />
+                                <h1>
+                                    <field name="x_department_id" width="50%" placeholder="Required"
+                                        required="1"
+                                        options="{'no_create': True, 'no_create_edit':True}" />
+                                </h1>
+                            </div>
+                        </div>
+                        <group>
+                            <group string="Requisition Information">
+                                <field name="x_job_name"
+                                    domain="[('department_id', '=', x_department_id)]"
+                                    placeholder="Required" required="1"
+                                    options="{'no_create': True, 'no_create_edit':True}" />
+                                <!-- <field name="x_job_description" required="1"
+                                    filename="job_description_file_name" /> -->
+                                <field name="job_description_ids" widget="many2many_binary"/>
+                                <field name="job_description_file_name" invisible="1" />
+                                <!-- <field name="x_calibration_notes"
+                                    filename="calibration_notes_file_name" /> -->
+                                <field name="calibration_notes_ids" widget="many2many_binary"/>
+                                <field name="calibration_notes_file_name" invisible="1" />
+                                <field name="company" required="1" />
+                                <field name="career_level" />
+                                <field name="audio_clip_needed" widget="boolean_toggle" />
+                                <field name="assessment_needed" widget="boolean_toggle" />
+                                <field name="priority"/>
+                                <field name="calibration_needed" widget="boolean_toggle" />
+                                <field name="x_calibration_call_availability" />
+                                <field name="calibration_date" />
+                                <field name="start_date" />
+                                <field name="x_client_classification" />
+                                <field name="x_job_classification" required="1" />
+                                <field name="x_recruitment_support_team" />
+                                <field name="x_req_position_classification" />
+                                <field name="x_industry"
+                                    groups="hr_recruitment.group_hr_recruitment_user,base.group_system" />
+                                <field name="x_salary_package" />
+                                <field name="client_website" />
+                            </group>
+                            <group string="Requisition SLA and Status">
+                                <field name="x_req_id" />
+                                <field name="x_requisition_status" />
+                                <field name="date_cancelled"/>
+                                <field name="date_onhold" />
+                                <field name="date_filled" />
+                                <field name="date_reopen" />
+                                <field name="cancelled_reason"/>
+                                <h3>Old SLA</h3>
+                                <field name="sourcing_date" />
+                                <field name="testing_datetime" />
+                                <field name="date_source" />
+                                <field name="end_date" />
+                                <field name="days_ageing" />
+                                <field name="hold_counter" />
+                                <field name="x_onhold_cancelled_remarks"/>
+                                <field name="create_date" string="Date Submitted" />
+                                <field name="x_req_sla" style="font-weight: bold;font-size: 15pt"
+                                    decoration-success="x_req_sla &gt; 0"
+                                    decoration-danger="x_req_sla &gt; 60"
+                                    decoration-warning="x_req_sla &gt; 30" />
+                                <field name="sla_met"/>
+                                <field name="days_to_fill" />
+                                <field name="x_req_sla_total" groups="base.group_system" />
+                                <field name="x_onhold_days" groups="base.group_system" />
+                                <field name="x_onhold_start_date" groups="base.group_system" />
+                                <field name="x_onhold_end_date" groups="base.group_system" />
+                                <field name="x_old_onhold_checker" groups="base.group_system" />
+                                <field name="x_onhold_counter" groups="base.group_system" />
+                                <field name="x_department_name" groups="base.group_system" />
+                                <field name="qs_department_name" groups="base.group_system" />
+                                <field name="qs_job_title" groups="base.group_system" />
+                                <field name="create_uid" />
+                                <field name="x_requisition_url" groups="base.group_system" />
+                                <h3>New SLA</h3>
+                                <field name="req_ageing" />
+                                <field name="req_ageing_total" groups="base.group_system"/>
+                                <field name="days_onhold" groups="base.group_system"/>
+                                <field name="hold_start_date" groups="base.group_system"/>
+                                <field name="hold_end_date" groups="base.group_system"/>
+                                <field name="old_onhold_checker" groups="base.group_system"/>
+                                <field name="hold_end_date" groups="base.group_system"/>
+                            </group>
+                            <group string="Staffing Overview">
+                                <field name="x_no_of_demand" />
+                                <field name="x_remaining_vacancy"
+                                    groups="hr_recruitment.group_hr_recruitment_user,base.group_system" />
+                                <field name="x_filled"
+                                    groups="hr_recruitment.group_hr_recruitment_user,base.group_system" />
+                                <field name="projected_headcount" />
+                                <field name="projected_neo_date" />
+                            </group>
+                            <group string="Recruitment and Client POC">
+                                <field name="x_recruitment_requestor" />
+                                <field name="x_hiring_manager" />
+                                <field name="sec_hiring_manager" />
+                                <field name="x_hiring_manager_email" />
+                                <field name="x_recruitment_manager"
+                                    groups="hr_recruitment.group_hr_recruitment_user,base.group_system" />
+                                <field name="x_assigned_recruiter"
+                                    groups="hr_recruitment.group_hr_recruitment_user,base.group_system" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Requisition Remarks">
+                                <field name="requisition_remarks" placeholder="Requisition Remarks" />
+                            </page>
+                            <page string="Other">
+                                <group>
+                                    <field name="x_onhold_logs" style="width:50%" />
+                                </group>
+                            </page>
+                            <page string="Update Logs">
+                                <group>
+                                    <field name="update_logs"/>
+                                </group>
+                            </page>
+                            <page string="Hires">
+                                <!-- <button name="compute_hired_applicants" string="Hires" type="object"
+                                    class="btn-primary me-5 mb-5" />
+                                <button name="compute_all_applicants" string="All Applicants"
+                                    type="object" class="btn-primary mb-5" /> -->
+                                <field name="applicant_ids" readonly="1" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    <!-- RECRUITMENT REQUISITION END -->
+
+    <!-- REVENUE GENERATION START -->
+    <record id="cs_portal_revenue_generation_form" model="ir.ui.view">
+        <field name="name">cs.portal.revenue.generation.form</field>
+        <field name="model">cs.portal.revenue.generation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="type_of_revenue_generation_id"/>
+                        <field name="cs_portal_main_id" groups="base.group_system"/>
+                        <field name="cs_main_ref_id" groups="base.group_system"/>
+                        <field name="cs_main_identifier_id" groups="base.group_system"/>
+                        <field name="employee_name" invisible="type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 7"/>
+                        <!--<field name="course_title" invisible="(is_readonly == 1)"/>-->
+                        <field name="course_title" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="it_assets" invisible="(is_readonly == 1)"/>-->
+                        <field name="it_assets" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="it_assets" invisible="(is_readonly == 1)"/>-->
+                        <!--<field name="miscellaneous" invisible="(is_readonly == 1)"/>-->
+                        <field name="miscellaneous" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="purpose" invisible="(is_readonly == 1)"/>-->
+                        <field name="purpose" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7"/>
+                        <!--<field name="destination" invisible="(is_readonly == 1)"/>-->
+                        <field name="destination" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7"/>
+                        <!--<field name="price_per_course" invisible="(is_readonly == 1)"/>-->
+                        <field name="price_per_course" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="invoiced_month" invisible="(is_readonly == 1)"/>-->
+                        <field name="invoiced_month" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="employee_list" invisible="(is_readonly == 1)"/>-->
+                        <field name="employee_list" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="quantity" invisible="(is_readonly == 1)"/>-->
+                        <field name="quantity" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <field name="requested_date" invisible="type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="order_date" invisible="(is_readonly == 1)"/>-->
+                        <field name="order_date" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="completed_date" invisible="(is_readonly == 1)"/>-->
+                        <field name="completed_date" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="approval_date" invisible="(is_readonly == 1)"/>-->
+                        <field name="approval_date" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 8"/>
+                        <field name="amount_usd" invisible="type_of_revenue_generation_id == 2"/>
+                        <field name="amount_php" invisible="type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 5 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="order_status" invisible="(is_readonly == 1)"/>-->
+                        <field name="order_status" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                        <!--<field name="approval_status" invisible="(is_readonly == 1)"/>-->
+                        <field name="approval_status" invisible="type_of_revenue_generation_id == 1 or type_of_revenue_generation_id == 2 or type_of_revenue_generation_id == 3 or type_of_revenue_generation_id == 4 or type_of_revenue_generation_id == 6 or type_of_revenue_generation_id == 7 or type_of_revenue_generation_id == 8"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    ### REVENUE GENERATION  END ###-->
+
+    <!-- REVENUE GENERATION DETAILS START -->
+    <!-- <record id="view_cs_portal_revenue_generation_details_form" model="ir.ui.view">
+        <field name="name">cs.portal.revenue.generation.details.form</field>
+        <field name="model">cs.portal.revenue.generation.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="revenue_generation_id" />
+                        <field name="type_id" />
+                    </group>                     
+                    <group string="Fields for Bonus and Incentives" invisible="'type_id.name' != 'Bonus and Incentive'">
+                        <field name="amount_usd" />
+                        <field name="employee_name" />
+                        <field name="requested_date" />
+                        <field name="amount_php" />
+                    </group>
+                    <group string="Fields for New Equipment" invisible="'type_id.name' != 'New Equipment'">
+                        <field name="it_assets" />
+                        <field name="quantity" />
+                        <field name="amount_usd" />
+                        <field name="order_date" />
+                        <field name="order_status" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> -->
+    <!--    ### REVENUE GENERATION DETAILS  END ###-->
+
+    <!--     Logs Form View-->
+    <record model="ir.ui.view" id="hr_logs_form_view">
+        <field name="name">Logs Form</field>
+        <field name="model">hr.logs</field>
+        <field name="arch" type="xml">
+            <form string="Logs Form" class="o_logs_portal">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                    </div>
+                    <div class="oe_title">
+                        <div>
+                            <group>
+                                <!-- <field name="related_record_id" invisible="[(related_record_id, '=', False)]"/> -->
+                                <!-- <field name="client_related_record_id" invisible="[(client_related_record_id, '=', False)]"/> -->
+                                <!-- <field name="job_related_record_id" invisible="[(job_related_record_id, '=', False)]"/> -->
+                                <field name="requisition_related_record_id" />
+                                <!-- <field name="applicant_related_record_id" invisible="[(applicant_related_record_id, '=', False)]"/> -->
+                                <field name="field_type" />
+                                <field name="user_id" />
+                                <field name="related_model" />
+                            </group>
+                        </div>
+                        <group>
+                            <group string="Old and New Values">
+                                <!-- <field name="ov_integer" /> -->
+                                <!-- <field name="ov_float" /> -->
+                                <field name="ov_char" />
+                                <field name="nv_char" />
+                                <!-- <field name="ov_text" /> -->
+                                <!-- <field name="ov_date" /> -->
+                                <!-- <field name="ov_datetime" /> -->
+                            </group>
+                            <!-- <group string="New Values">
+                                <field name="nv_integer" />
+                                <field name="nv_float" />
+                                <field name="nv_char" />
+                                <field name="nv_text" />
+                                <field name="nv_date" />
+                                <field name="nv_datetime" />
+                            </group> -->
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    Search Filter and Archive for CS Clients START-->
+    <record id="cs_portal_search_view" model="ir.ui.view">
+        <field name="name">cs.search.view</field>
+        <field name="model">cs.portal.main</field>
+        <field name="arch" type="xml">
+            <search string="Clients">
+                <field name="account_name" string="Account Name" />
+                <filter string="My Accounts" name="my_accounts"
+                    domain="['|', ('account_owner_id.user_id', '=', uid), ('secondary_owner_id.user_id', '=', uid)]" />
+                <separator />
+                <filter string="Active Clients" name="active_clients" domain="[('account_status', '=', 'active' )]"/>
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter string="Account Owner" name="account_owner"
+                        context="{'group_by':'account_owner_id'}" />
+                    <filter string="Secondary Owner" name="secondary_owner"
+                        context="{'group_by':'secondary_owner_id'}" />
+                </group>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!-- Search Filter and Archive for CS Clients END -->
+
+    <!-- Search Filter and Archive for CS Account Owner START -->
+    <record id="cs_portal_account_owner_search" model="ir.ui.view">
+        <field name="name">cs.account.owner.search</field>
+        <field name="model">cs.portal.account.owner</field>
+        <field name="arch" type="xml">
+            <search string="Account Owner">
+                <field name="account_owner_ids" string="Account Owner Reference" />
+
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!--  Search Filter and Archive for CS Account Owner END -->
+
+    <!-- Search Filter and Archive for CS Secondary Owner START -->
+    <record id="cs_portal_secondary_owner_search" model="ir.ui.view">
+        <field name="name">cs.secondary.owner.search</field>
+        <field name="model">cs.portal.secondary.owner</field>
+        <field name="arch" type="xml">
+            <search string="Secondary Owner">
+                <field name="account_owner_ids" string="Secondary Owner Reference" />
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!--  Search Filter and Archive for CS Secondary Owner END -->
+
+    <!--    Search Filter and Archive for CS POC INFORMATION START -->
+    <record id="cs_portal_poc_information_search" model="ir.ui.view">
+        <field name="name">cs.portal.poc.information.search</field>
+        <field name="model">cs.portal.poc.information</field>
+        <field name="arch" type="xml">
+            <search string="Point of Contact">
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!-- Search Filter and Archive for CS POC INFORMATION END -->
+
+    <!--    Search Filter and Archive for CS Client Interactions START -->
+    <record id="cs_portal_client_interaction_search" model="ir.ui.view">
+        <field name="name">cs.portal.client.interactions.search</field>
+        <field name="model">cs.portal.client.interactions</field>
+        <field name="arch" type="xml">
+            <search string="Client Interactions">
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!-- Search Filter and Archive for CS Client Interactions END -->
+
+    <!--    Search Filter and Archive for CS Business Review START -->
+    <record id="cs_portal_business_reviews_search" model="ir.ui.view">
+        <field name="name">cs.portal.business.reviews.search</field>
+        <field name="model">cs.portal.business.reviews</field>
+        <field name="arch" type="xml">
+            <search string="Business Reviews">
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!-- Search Filter and Archive for CS Business Review END -->
+
+    <!--    Search Filter and Archive for CS Attrition START -->
+    <record id="cs_portal_attrition_search" model="ir.ui.view">
+        <field name="name">cs.portal.attrition.search</field>
+        <field name="model">cs.portal.attrition</field>
+        <field name="arch" type="xml">
+            <search string="Attrition">
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+    <!-- Search Filter and Archive for CS Attrition END -->
+
+    <!--        Requisition Filters-->
+        <record
+            id="hr_requisition_view_search_bis" model="ir.ui.view">
+            <field name="name">hr.requisition.view.search</field>
+            <field name="model">hr.requisition</field>
+            <field name="arch" type="xml">
+                <search string="Search Requisitions">
+                    <field string="Requisition ID" name="x_req_id" />
+                    <field string="Client Name" name="x_department_id" />
+                    <field string="Job Title" name="x_job_name" />
+                    <filter string="Pending Requisition Status" name="pending_requisition"
+                        domain="[('x_requisition_status', '=', 'pending')]" />
+                    <filter string="Open Requisition Status" name="open_requisition"
+                        domain="[('x_requisition_status', '=', 'open')]" />
+                    <filter string="In Progress Requisition Status" name="in_progress_requisition"
+                        domain="[('x_requisition_status', '=', 'in progress')]" />
+                    <filter string="On Hold Requisition Status" name="on_hold_requisition"
+                        domain="[('x_requisition_status', '=', 'on hold')]" />
+                    <filter string="Cancelled Requisition Status" name="cancelled_requisition"
+                        domain="[('x_requisition_status', '=', 'cancelled')]" />
+                    <filter string="Closed Requisition Status" name="closed_requisition"
+                        domain="[('x_requisition_status', '=', 'closed')]" />
+                </search>
+            </field>
+        </record>
+
+</odoo>

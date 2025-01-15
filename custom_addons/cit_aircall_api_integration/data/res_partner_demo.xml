@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="aircall_res_partner_1" model="res.partner">
+            <field name="image_1920"
+                   file="cit_aircall_api_integration/static/src/img/aircall-icon.svg"
+                   type="base64"/>
+            <field name="is_company" eval="True"/>
+            <field name="name">Aircall Integration</field>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

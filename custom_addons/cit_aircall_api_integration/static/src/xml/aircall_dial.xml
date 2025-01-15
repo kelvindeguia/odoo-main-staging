@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<t t-name="cit_aircall_api_integration.AircallDialpad" owl="1">
+		<div class="aircall_icon" style="margin-top:auto;margin-bottom:auto;">
+            <div class="aircall_div">
+                <div class="toggle-icon" role="button">
+					<img src="/cit_aircall_api_integration/static/src/img/aircall-icon.svg"
+						 style="height:20px;width:20px;" title="Aircall DialPad" id="aircall_img" t-on-click="_onClick"/>
+                </div>
+            </div>
+      	</div>
+		<div style="margin-top: 3em;z-index: 1000;position: fixed;display: table;right: 0.5em;"
+			class="iframe_dialpad d-none" id="phone" t-att-class="{'d-none': !state.isVisible, 'show': state.isVisible}">
+			<iframe
+				allow="microphone; autoplay; clipboard-read; clipboard-write; hid"
+			  	src="https://phone.aircall.io?integration=generic"
+				style="height:578px; width:360px;border:1px solid lightgray;">
+			</iframe>
+		</div>
+	</t>
+
+    <t t-name="cit_aircall_api_integration.FormPhoneFieldClick" t-inherit="web.PhoneField" t-inherit-mode="extension" owl="1">
+      <xpath expr="//div[hasclass('o_phone_content')]//a" position="attributes">
+        <attribute name="t-on-click">onClickCall</attribute>
+      </xpath>
+    </t>
+
+<!--    <t t-inherit="web.FormPhoneField" t-inherit-mode="extension" owl="1">-->
+<!--      <xpath expr="//a[hasclass('o_phone_form_link')]" position="attributes">-->
+<!--        <attribute name="t-on-click">onClickCall</attribute>-->
+<!--      </xpath>-->
+<!--    </t>-->
+
+</templates>
+
+

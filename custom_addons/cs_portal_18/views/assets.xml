@@ -1,0 +1,8 @@
+<odoo>
+    <template id="assets_backend" name="Custom JS and CSS">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/cs_portal_18/static/src/js/health_status_widget.js"></script>
+            <link rel="stylesheet" href="/cs_portal_18/static/src/css/health_status_widget.css"/>
+        </xpath>
+    </template>
+</odoo>

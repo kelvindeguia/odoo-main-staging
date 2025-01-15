@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    Candidate Form Page Action-->
+    <record model="ir.actions.act_window" id="action_hr_candidate_form">
+        <field name="name">Candidate Form</field>
+        <field name="res_model">hr.candidate.form</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No submissions yet!
+            </p>
+            <p>
+                Odoo helps you track applications in the recruitment
+                process and follow up all operations: meetings, interviews, etc.
+            </p>
+            <p>
+            </p>
+        </field>
+    </record>
+
+    <!-- Candidate Tree View -->
+    <record model="ir.ui.view" id="hr_candidate_form_view_tree">
+        <field name="name">Candidate Tree</field>
+        <field name="model">hr.candidate.form</field>
+        <field name="arch" type="xml">
+            <list string="Candidate">
+                <field name="name" />
+                <field name="email" />
+            </list>
+        </field>
+    </record>
+
+    <!--     Candidate Form View-->
+    <record model="ir.ui.view" id="hr_candidate_form_form_view">
+        <field name="name">Candidate Form</field>
+        <field name="model">hr.candidate.form</field>
+        <field name="arch" type="xml">
+            <form string="Candidate Form" class="o_candidate_portal">
+                <header>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Dispatched" bg_color="bg-danger" invisible="not combined"/>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                    </div>
+                    <div class="oe_title">
+                        <h2 class="o_row">
+                            <div>
+                                <label for="name" class="oe_edit_only"/>
+                                <field name="name"/>
+                            </div>
+                            <div>
+                                <label for="email" class="oe_edit_only"/>
+                                <field name="email"/>
+                            </div>
+                        </h2>
+                        <group string="Questionnaires">
+                            <field name="residing_metro_manila" />
+                            <field name="relocate" />
+                            <field name="specification_ids" widget="many2many_checkboxes"/>
+                            <field name="appointments_specification" />
+                            <field name="diagnosed" />
+                            <field name="medical_condition" />
+                            <field name="combined" invisible="1"/>
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_hr_portal_category">
+            <field name="name">HR Recruitment</field>
+            <field name="description">Groups for Recruitment</field>
+            <field name="sequence">-10</field>
+        </record>
+        
+        <record id="x_req_id" model="ir.sequence">
+            <field name="name">Requisition ID</field>
+            <field name="code">req.code</field>
+            <field name="prefix">REQ</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_tree_inh_aircall" model="ir.ui.view">
+            <field name="name">res.partner.view.tree.inh.aircall</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="add_log_note" widget="boolean_toggle"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_form_inh_aircall" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inh.aircall</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//span[@name='address_name']" position="before">
+                    <field name="last_name"/>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="synced_to_aircall" readonly="1"/>
+                    <field name="updated_contact" readonly="1"/>
+                </xpath>
+                <field name="phone" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+                <field name="email"/>
+                <xpath expr="//notebook/page" position="after">
+                    <page string="Aircall Details" name="aircall_details">
+                        <group>
+                            <field name="aircall_id" readonly="1" invisible="True"/>
+                            <field name="direct_link" readonly="1" invisible="True"/>
+                            <field name="is_shared" readonly="1" invisible="True"/>
+                        </group>
+                        <group class="row">
+                            <label for="aircall_detail_ids" string="Call Detail"/>
+                            <field name="aircall_detail_ids" readonly="1"/>
+                            <group class="col-4">
+                                <group>
+                                    <label for="phone_details_ids"/>
+                                </group>
+                                <field name="phone_details_ids" nolabel="1">
+                                    <list>
+                                        <field name="phone_id" column_invisible="True"/>
+                                        <field name="label"/>
+                                        <field name="value"/>
+                                        <field name="partner_id" column_invisible="True"/>
+                                    </list>
+                                    <form string="Phone Details">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="phone_id"
+                                                           invisible="True"/>
+                                                    <field name="label"/>
+                                                    <field name="value"/>
+                                                    <field name="partner_id"
+                                                           invisible="True"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </group>
+                            <group class="col-4">
+                                <group style="margin-left:65px !important;">
+                                    <label for="email_details_ids"/>
+                                </group>
+                                <field name="email_details_ids"
+                                       style="margin-left:65px !important;" nolabel="1">
+                                    <list>
+                                        <field name="email_id" column_invisible="True"/>
+                                        <field name="label"/>
+                                        <field name="value"/>
+                                        <field name="partner_id" column_invisible="True"/>
+                                    </list>
+                                    <form string="Email Details">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="email_id"
+                                                           invisible="True"/>
+                                                    <field name="label"/>
+                                                    <field name="value"/>
+                                                    <field name="partner_id"
+                                                           invisible="True"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_contacts_extended" model="ir.actions.act_window">
+            <field name="name">Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        </record>
+    </data>
+</odoo>

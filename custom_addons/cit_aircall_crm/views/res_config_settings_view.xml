@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Inherit Form View to Modify it -->
+<odoo>
+    <record id="res_config_settings_view_inherit" model="ir.ui.view">
+        <field name="name">res_config_settings_view_inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id"
+               ref="cit_aircall_api_integration.res_config_settings_view_form_inh_aircall"/>
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='number_maping']"
+                   position="inside">
+                <div class="o_setting_box col-12 col-lg-6 o_searchable_setting" invisible="not aircall_auth">
+
+                        <h6>CRM Module</h6>
+                        <button name="fetch_crm_numbers" icon="oi-arrow-right" type="object" string="Connect All" class="btn-link"/>
+                        <field name="number_crm_config_ids" widget="many2many_tags"
+                                   class="oe_inline"
+                                   options="{'no_create': True, 'no_create_edit': True}"
+                                   title="Aircall CRM Numbers"/>
+                </div>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+<record id="view_cs_portal_revenue_generation_pivot" model="ir.ui.view">
+    <field name="name">cs.portal.revenue.generation.pivot</field>
+    <field name="model">cs.portal.revenue.generation.details</field>
+    <field name="arch" type="xml">
+        <pivot>
+            <field name="type_id" type="row" />
+            <field name="amount_usd" type="measure" />
+            <field name="quantity" type="measure" />
+            <field name="order_status" type="col" />
+        </pivot>
+    </field>
+</record>
+</odoo>

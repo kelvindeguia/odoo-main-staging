@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem
+        id="cs_portal_main_menu"
+        name="Client Services"
+        sequence="-10"
+        action="cs_portal_clients_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_recruitment_access,group_cs_portal_sales_access,group_cs_portal_hr_access"
+    />
+
+    <!--    Menu Item for Clients-->
+    <menuitem
+        id="cs_portal_clients_menu"
+        parent="cs_portal_main_menu"
+        name="Clients"
+        sequence="1"
+        action="cs_portal_clients_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_recruitment_access,group_cs_portal_sales_access,group_cs_portal_hr_access"
+    />
+
+    <!--    Menu Item for Configuration-->
+    <menuitem
+        id="cs_portal_configuration_menu"
+        parent="cs_portal_main_menu"
+        name="Configuration"
+        sequence="3"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access,group_cs_portal_hr_access"
+    />
+
+    <!--    Menu Item for Logs-->
+    <menuitem
+        id="menu_hr_logs"
+        parent="cs_portal_main_menu"
+        name="Logs"
+        sequence="4"
+        action="action_hr_logs"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Tags-->
+    <menuitem
+        id="cs_portal_configuration_tags_menu"
+        parent="cs_portal_configuration_menu"
+        name="Tags"
+        sequence="1"
+        action="cs_portal_tags_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+
+    <!--    Menu Item for Contract Length-->
+    <menuitem
+        id="cs_portal_configuration_contract_length_menu"
+        parent="cs_portal_configuration_menu"
+        name="Contract Length"
+        sequence="2"
+        action="cs_portal_contract_length_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Account Owner-->
+    <menuitem
+        id="cs_portal_configuration_account_owner_menu"
+        parent="cs_portal_configuration_menu"
+        name="Account Owner"
+        sequence="3"
+        action="cs_portal_account_owner_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Secondary Owner-->
+    <menuitem
+        id="cs_portal_configuration_secondary_owner_menu"
+        parent="cs_portal_configuration_menu"
+        name="Secondary Owner"
+        sequence="4"
+        action="cs_portal_secondary_owner_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Other Data-->
+    <menuitem
+        id="cs_portal_other_data_menu"
+        parent="cs_portal_main_menu"
+        name="Other Data"
+        sequence="2"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+
+    <!--    Menu Item for POC Information-->
+    <menuitem
+        id="cs_portal_poc_information_menu"
+        parent="cs_portal_other_data_menu"
+        name="POC Information"
+        sequence="1"
+        action="cs_portal_poc_information_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+    
+    <!--    Menu Item for Client Interactions-->
+    <menuitem
+        id="cs_portal_client_interactions_menu"
+        parent="cs_portal_other_data_menu"
+        name="Client Interactions"
+        sequence="2"
+        action="cs_portal_client_interactions_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+    
+    <!--    Menu Item for Business Reviews-->
+    <menuitem
+        id="cs_portal_business_reviews_menu"
+        parent="cs_portal_other_data_menu"
+        name="Business Reviews"
+        sequence="3"
+        action="cs_portal_business_reviews_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+
+    <!--    Menu Item for Attritions-->
+    <menuitem
+        id="cs_portal_attrition_menu"
+        parent="cs_portal_other_data_menu"
+        name="Attrition"
+        sequence="4"
+        action="cs_portal_attrition_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access,group_cs_portal_hr_access"
+    />
+    
+    <!--    Menu Item for Attritions-->
+    <!-- <menuitem
+        id="cs_portal_attrition_menu"
+        parent="cs_portal_other_data_menu"
+        name="Attrition"
+        sequence="5"
+        action="cs_portal_attrition_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    /> -->
+
+    <!--    Menu Item for Requisition-->
+    <!-- <menuitem
+        id="cs_portal_requisition_menu"
+        parent="cs_portal_other_data_menu"
+        name="Requisition"
+        sequence="6"
+        action="cs_portal_requisition_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    /> -->
+
+    <!--    Menu Item for HR Requisition-->
+    <menuitem
+        id="hr_recruitment_requisition_menu"
+        parent="cs_portal_other_data_menu"
+        name="Requisition"
+        sequence="7"
+        action="cs_portal_action_hr_requisition"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+
+    <!--    Menu Item for Revenue Generation-->
+    <menuitem
+        id="cs_portal_revenue_generation_menu"
+        parent="cs_portal_other_data_menu"
+        name="Revenue Generation"
+        sequence="8"
+        action="cs_portal_revenue_generation_action"
+        groups="group_cs_portal_user,group_cs_portal_manager,group_cs_portal_sales_access"
+    />
+
+    <!--    Menu Item for Client Interactions Types of Interactions-->
+    <menuitem
+        id="cs_portal_client_meeting_type_menu"
+        parent="cs_portal_configuration_menu"
+        name="Meeting Type"
+        sequence="8"
+        action="cs_portal_client_meeting_type_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Separation Status -->
+    <menuitem
+        id="cs_portal_separation_status_menu"
+        parent="cs_portal_configuration_menu"
+        name="Separation Status"
+        sequence="11"
+        action="cs_portal_separation_status_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Reason for Separation -->
+    <menuitem
+        id="cs_portal_reason_for_separation_menu"
+        parent="cs_portal_configuration_menu"
+        name="Reason for Separation"
+        sequence="12"
+        action="cs_portal_reason_for_separation_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Client Interactions Types of Interactions-->
+    <menuitem
+        id="cs_portal_configuration_client_interactions_type_menu"
+        parent="cs_portal_configuration_menu"
+        name="Client Interactions Types"
+        sequence="13"
+        action="cs_portal_client_interactions_type_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Revenue Generation Type-->
+    <menuitem
+        id="cs_portal_configuration_revenue_generation_type_menu"
+        parent="cs_portal_configuration_menu"
+        name="Revenue Generation Types"
+        sequence="14"
+        action="cs_portal_client_revenue_generation_type_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Revenue Generation Details-->
+    <!-- <menuitem
+        id="cs_portal_configuration_revenue_generation_details_menu"
+        parent="cs_portal_configuration_menu"
+        name="Revenue Generation Details"
+        sequence="15"
+        action="cs_portal_revenue_generation_details_action"
+        groups="base.group_system"
+    /> -->
+
+    <!--    Menu Item for Chat Platform Type-->
+    <menuitem
+        id="cs_portal_configuration_chat_platform_menu"
+        parent="cs_portal_configuration_menu"
+        name="Chat Platform Types"
+        sequence="16"
+        action="cs_portal_chat_platform_action"
+        groups="base.group_system"
+    />
+
+    <!--    Menu Item for Interactions Owner-->
+    <!-- <menuitem
+        id="cs_portal_configuration_client_interactions_owner_menu"
+        parent="cs_portal_configuration_menu"
+        name="Owner"
+        sequence="17"
+        action="cs_portal_client_interactions_owner_action"
+        groups="base.group_system"
+    /> -->
+
+    <menuitem
+        id="cs_portal_configuration_interactions_owner_menu"
+        parent="cs_portal_configuration_menu"
+        name="Owner"
+        sequence="17"
+        action="cs_portal_interactions_owner_action"
+        groups="base.group_system"
+    />
+    
+</odoo>

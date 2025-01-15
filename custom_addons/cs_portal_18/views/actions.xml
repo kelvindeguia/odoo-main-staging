@@ -1,0 +1,191 @@
+<odoo>
+    <!--    Action for Clients Menu-->
+    <record id="cs_portal_clients_action" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.main</field>
+        <field name="view_mode">list,form</field>
+        <!-- <field name="context">{'search_default_my_accounts': 1}</field> -->
+    </record>
+
+    <!--    Action for Account Owner-->
+    <record id="cs_portal_account_owner_action" model="ir.actions.act_window">
+        <field name="name">Account Owner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.account.owner</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Secondary Owner-->
+    <record id="cs_portal_secondary_owner_action" model="ir.actions.act_window">
+        <field name="name">Secondary Owner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.secondary.owner</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Tags Menu-->
+    <record id="cs_portal_tags_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.tag</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Contract Length-->
+    <record id="cs_portal_contract_length_action" model="ir.actions.act_window">
+        <field name="name">Contract Length</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.contract.length</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for POC Information-->
+    <record id="cs_portal_poc_information_action" model="ir.actions.act_window">
+        <field name="name">POC Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.poc.information</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Client Interactions-->
+    <record id="cs_portal_client_interactions_action" model="ir.actions.act_window">
+        <field name="name">Client Interactions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.client.interactions</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Client Interactions Type of Interactions-->
+    <record id="cs_portal_client_interactions_type_action" model="ir.actions.act_window">
+        <field name="name">Type of Client Interactions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.client.interactions.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Business Reviews-->
+    <record id="cs_portal_business_reviews_action" model="ir.actions.act_window">
+        <field name="name">Business Reviews</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.business.reviews</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Client Meeting Types-->
+    <record id="cs_portal_client_meeting_type_action" model="ir.actions.act_window">
+        <field name="name">Meeting Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.client.meeting.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Attrition-->
+    <record id="cs_portal_attrition_action" model="ir.actions.act_window">
+        <field name="name">Attrition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.attrition</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Separation Status -->
+    <record id="cs_portal_separation_status_action" model="ir.actions.act_window">
+        <field name="name">Separation Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.separation.status</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Reason for Separation -->
+    <record id="cs_portal_reason_for_separation_action" model="ir.actions.act_window">
+        <field name="name">Reason for Separation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.reason.for.separation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Requisition-->
+    <record id="cs_portal_requisition_action" model="ir.actions.act_window">
+        <field name="name">CS Requisition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.requisition</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    HR Requisition Page Action-->
+    
+    <!-- Requisition Page Action -->
+    <record id="cs_portal_action_hr_requisition" model="ir.actions.act_window">
+            <field name="name">Requisition</field>
+            <field name="res_model">hr.requisition</field>
+            <field name="view_mode">list,form,pivot,graph</field>
+    </record>
+
+    <!--    Logs Page Action-->
+    <record id="action_hr_logs" model="ir.actions.act_window">
+        <field name="name">Logs</field>
+        <field name="res_model">hr.logs</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" eval="False" />
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No logs yet!
+            </p>
+            <p>
+            </p>
+            <p>
+            </p>
+        </field>
+    </record>
+
+    <!--    Action for Revenue Generation -->
+    <record id="cs_portal_revenue_generation_action" model="ir.actions.act_window">
+        <field name="name">Revenue Generations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.revenue.generation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Revenue Generation Types-->
+    <record id="cs_portal_client_revenue_generation_type_action" model="ir.actions.act_window">
+        <field name="name">Revenue Generation Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.revenue.generation.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Revenue Generation Details-->
+    <record id="cs_portal_revenue_generation_details_action" model="ir.actions.act_window">
+        <field name="name">Revenue Generation Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.revenue.generation.details</field>
+        <field name="view_mode">list,form,pivot</field>
+    </record>
+
+    <!--    Action for Chat Platform Menu-->
+    <record id="cs_portal_chat_platform_action" model="ir.actions.act_window">
+        <field name="name">Chat Platform</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.chat.platform</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!--    Action for Client Interactions Owner-->
+    <record id="cs_portal_client_interactions_owner_action" model="ir.actions.act_window">
+        <field name="name">Owner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.client.interactions.owner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--    Action for Interactions Owner-->
+    <record id="cs_portal_interactions_owner_action" model="ir.actions.act_window">
+        <field name="name">Owner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cs.portal.interactions.owner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+</odoo>

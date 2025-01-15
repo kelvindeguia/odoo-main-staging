@@ -1,0 +1,7 @@
+.o_health_circle {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; /* Makes it a circle */
+    margin-left: 5px; /* Optional: Add some space between the text and the circle */
+}

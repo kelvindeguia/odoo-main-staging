@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mail_message_view_form_inh_aircall" model="ir.ui.view">
+            <field name="name">mail.message.view.form.inh.aircall</field>
+            <field name="model">mail.message</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="mail.mail_message_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="aircall_call_id" readonly="1"/>
+<!--                    <field name="recording_attachment_id"/>-->
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

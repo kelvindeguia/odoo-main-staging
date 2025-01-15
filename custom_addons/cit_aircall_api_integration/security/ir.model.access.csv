@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aircall_connection,aircall.connection all,model_aircall_connection,base.group_user,1,1,1,1
+cit_aircall_api_integration.access_phone_details,access_phone_details,cit_aircall_api_integration.model_phone_details,base.group_user,1,1,1,1
+cit_aircall_api_integration.access_email_details,access_email_details,cit_aircall_api_integration.model_email_details,base.group_user,1,1,1,1
+cit_aircall_api_integration.access_aircall_webhook,access_aircall_webhook,cit_aircall_api_integration.model_aircall_webhook,base.group_user,1,1,1,1
+cit_aircall_api_integration.access_number_number,access_number_number,cit_aircall_api_integration.model_number_number,base.group_user,1,1,1,1
+cit_aircall_api_integration.access_aircall_details,access_aircall_details,cit_aircall_api_integration.model_aircall_details,base.group_user,1,1,1,1

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_inh_aircall" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inh.aircall</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='contacts_settings']" position="before">
+
+                        <block title="Aircall Integration Settings"
+                               name="aircall_auth_container">
+                            <setting
+                                    help="Provide credentials, enable the checkbox, and click save to activate the integration."
+                                    id="aircall_id">
+                                <field string="Connection"  name="aircall_auth"/>
+                                <div id="aircall_authen"
+                                     class="content-group aircall_fetch_number_setting"
+                                     invisible="not aircall_auth">
+                                    <div class="mt16"
+                                         title="This is the URL used for API integration with Aircall.">
+                                        <label for="api_url" class="o_form_label mr8"/>
+                                        <field name="api_url" class="oe_inline"
+                                               required="aircall_auth"/>
+                                    </div>
+                                    <div class="mt8"
+                                         title="This is the API ID used for authentication in Aircall API integration.">
+                                        <label for="api_id" class="o_form_label mr8"/>
+                                        <field name="api_id" class="oe_inline" password="True"
+                                               required="aircall_auth"/>
+                                    </div>
+                                    <div class="mt8"
+                                         title="Enter your API token here. This token is used for integration with Aircall.">
+                                        <label for="api_token" class="o_form_label mr8"/>
+                                        <field name="api_token" class="oe_inline"
+                                               password="True" required="aircall_auth"/>
+                                    </div>
+                                    <div class="mt8"
+                                         title="Enter your Aircall integration token here. This token is used for integration purposes.">
+                                        <label for="aircall_integration_token"
+                                               class="o_form_label mr8"/>
+                                        <field name="aircall_integration_token"
+                                               class="oe_inline" password="True"
+                                               required="aircall_auth"/>
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting invisible="not aircall_auth" id="number_maping">
+                                <h6>Number Mapping</h6>
+                                <p class="text-muted">Choose what numbers log to each module.
+                                </p>
+                                <h6>Contacts Module</h6>
+                                <button name="fetch_numbers" icon="oi-arrow-right"
+                                        type="object" string="Connect All"
+                                        class="btn-link"/>
+                                <br/>
+                                <field name="number_config_ids" widget="many2many_tags"
+                                       class="oe_inline"
+                                       options="{'no_create': True, 'no_create_edit': True}"/>
+                            </setting>
+                            <setting invisible="not aircall_auth" string="Create Contacts For Unknown Numbers" help="If this option is enabled, the integration will create a contact when an external phone number is not linked to any of your contacts." id="unknown_contact">
+                                <field name="allow_create_unknown_contacts" />
+                            </setting>
+
+                        </block>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

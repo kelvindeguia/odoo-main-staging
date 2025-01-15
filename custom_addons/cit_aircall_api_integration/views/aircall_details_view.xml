@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id='aircall_detail_form_view' model='ir.ui.view'>
+        <field name="name">aircall.details.form.view</field>
+        <field name="model">aircall.details</field>
+        <field name="arch" type="xml">
+            <form string="Aircall Details">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="call_by_user"/>
+                            <field name="customer_id"/>
+                            <field name="phonenumbers"/>
+                            <field name="create_date" string="Date"/>
+                            <field name="call_qualification"/>
+                            <field name="recording_url" widget="url"/>
+                        </group>
+                        <group>
+                            <field name="call_duration"/>
+                            <field name="waiting_time"/>
+                            <field name="call_time"/>
+                            <field name="air_call_number"/>
+                            <field name="tags" optional="hide"/>
+                            <field name="notes" optional="hide"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='aircall_detail_tree_view' model='ir.ui.view'>
+        <field name='name'>aircall.details.tree.view</field>
+        <field name='model'>aircall.details</field>
+        <field name='arch' type='xml'>
+            <list string="Aircall Details">
+                <field name="call_by_user"/>
+                <field name="customer_id"/>
+                <field name="phonenumbers"/>
+                <field name="create_date" string="Date" optional="hide"/>
+                <field name="call_qualification" optional="hide"/>
+                <field name="call_duration" optional="hide"/>
+                <field name="waiting_time" optional="hide"/>
+                <field name="call_time" optional="hide"/>
+                <field name="air_call_number"/>
+                <field name="recording_url"/>
+                <field name="tags" optional="hide"/>
+                <field name="notes" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id='action_aircall_detail' model='ir.actions.act_window'>
+        <field name='name'>Aircall Details</field>
+        <field name='type'>ir.actions.act_window</field>
+        <field name='res_model'>aircall.details</field>
+        <field name='view_mode'>list,form</field>
+    </record>
+
+     <menuitem id='menu_item_aircall_details_root'
+              name='Aircall'
+              web_icon='cit_aircall_api_integration,static/description/icon.png'
+              action='action_aircall_detail'
+    />
+</odoo>

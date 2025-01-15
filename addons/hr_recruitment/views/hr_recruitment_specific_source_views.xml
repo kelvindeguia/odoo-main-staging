@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_hr_recruitment_specific_source">
+            <field name="name">Specific Source</field>
+            <field name="res_model">hr.recruitment.specific.source</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref=""/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Want to see the different recruitment specific sources?
+                </p><p>
+                    Specific Source
+                </p>
+            </field>
+        </record>
+
+        <record id="view_hr_recruitment_specific_source_tree" model="ir.ui.view">
+        <field name="name">hr.recruitment.specific.source.list</field>
+        <field name="model">hr.recruitment.specific.source</field>
+        <field name="arch" type="xml">
+            <list string="Specific Source" sample="1">
+                <field name="name"/>
+                <field name="channel_id"/>
+            </list>
+        </field>
+    </record>
+    </data>
+</odoo>
